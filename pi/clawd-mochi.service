@@ -1,0 +1,23 @@
+[Unit]
+Description=Clawd Mochi - Desk Companion
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/clawd-mochi
+ExecStart=/usr/bin/python3 /opt/clawd-mochi/app.py
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Give time for display init
+TimeoutStartSec=30
+
+# Environment
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
